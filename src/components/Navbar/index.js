@@ -15,19 +15,19 @@ function navbar() {
     <>
       <Navbar bg="light" expand="lg">
         <Container>
-          <Navbar.Brand as={Link} to="#home">
+          <Navbar.Brand as={Link} to="/home">
             Health Predictor
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="#home">
+              <Nav.Link as={Link} to="/home">
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to="#link">
+              <Nav.Link as={Link} to="/link">
                 Link
               </Nav.Link>
-              <Nav.Link as={Link} to="#about">
+              <Nav.Link as={Link} to="/about">
                 About
               </Nav.Link>
             </Nav>
