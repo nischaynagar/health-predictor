@@ -4,7 +4,7 @@ import { Carousel } from "react-bootstrap";
 export default function About() {
   return (
     <div>
-      <Carousel>
+      {/* <Carousel>
         <Carousel.Item>
           <Carousel.Caption>
             <h3>First slide label</h3>
@@ -25,8 +25,7 @@ export default function About() {
             </p>
           </Carousel.Caption>
         </Carousel.Item>
-      </Carousel>
-      ut
+      </Carousel> */}
     </div>
   );
 }

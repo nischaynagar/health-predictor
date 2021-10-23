@@ -62,6 +62,14 @@ function Cancer() {
             <Form.Control placeholder="Concavity_mean" />
           </Col>
         </Form.Group>
+        <Form.Group as={Row} className="mb-3" controlId="fromConcavePointsMean">
+          <Form.Label column sm="2">
+            Concave points_mean :
+          </Form.Label>
+          <Col sm="10">
+            <Form.Control placeholder="Concave points_mean" />
+          </Col>
+        </Form.Group>
       </Form>
     </div>
   );
