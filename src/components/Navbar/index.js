@@ -24,9 +24,28 @@ function navbar() {
               <Nav.Link as={Link} to="/home">
                 Home
               </Nav.Link>
-              <Nav.Link as={Link} to="/link">
-                Link
+              <Nav.Link as={Link} to="/cancer">
+                Cancer
               </Nav.Link>
+              <Nav.Link as={Link} to="/diabetes">
+                Diabetes
+              </Nav.Link>
+              <Nav.Link as={Link} to="/liver">
+                Liver
+              </Nav.Link>
+              <Nav.Link as={Link} to="/heart">
+                Heart
+              </Nav.Link>
+              <Nav.Link as={Link} to="/kidney">
+                Kidney
+              </Nav.Link>
+              <Nav.Link as={Link} to="/malaria">
+                Malaria
+              </Nav.Link>
+              <Nav.Link as={Link} to="/pneumonia">
+                Pneumonia
+              </Nav.Link>
+
               <Nav.Link as={Link} to="/about">
                 About
               </Nav.Link>
