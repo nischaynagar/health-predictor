@@ -1,75 +1,42 @@
 import React from "react";
 import { Col, FloatingLabel, Form, Row } from "react-bootstrap";
+import FormComponent from "../Form/form";
 
 function Cancer() {
   return (
     <div className="container">
       <h3 className="mb-4">Please fill the details</h3>
       <Form>
-        <Form.Group as={Row} className="mb-3" controlId="formRadiusMean">
-          <Form.Label column sm="2">
-            Radius_mean :
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control placeholder="Radius_mean" />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="fromTextureMean">
-          <Form.Label column sm="2">
-            Texture_mean :
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control placeholder="Texture_mean" />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="fromPerimeterMean">
-          <Form.Label column sm="2">
-            Perimeter_mean :
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control placeholder="Perimeter_mean" />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="fromAreaMean">
-          <Form.Label column sm="2">
-            Area_mean :
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control placeholder="Area_mean" />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="fromSmoothnessMean">
-          <Form.Label column sm="2">
-            Smoothness_mean :
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control placeholder="Smoothness_mean" />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="fromCompactnessMean">
-          <Form.Label column sm="2">
-            Compactness_mean :
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control placeholder="Compactness_mean" />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="fromConcavityMean">
-          <Form.Label column sm="2">
-            Concavity_mean :
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control placeholder="Concavity_mean" />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="fromConcavePointsMean">
-          <Form.Label column sm="2">
-            Concave points_mean :
-          </Form.Label>
-          <Col sm="10">
-            <Form.Control placeholder="Concave points_mean" />
-          </Col>
-        </Form.Group>
+        <FormComponent id="fromRadiusMean" featureName="Radius Mean"></FormComponent>
+        <FormComponent id="fromTextureMean" featureName="Texture Mean"></FormComponent>
+        <FormComponent id="fromPerimeterMean" featureName="Perimeter Mean"></FormComponent>
+        <FormComponent id="fromAreaMean" featureName="Area Mean"></FormComponent>
+        <FormComponent id="fromSmoothnessMean" featureName="Smoothness Mean"></FormComponent>
+        <FormComponent id="fromCompactnessMean" featureName="Compactness Mean"></FormComponent>
+        <FormComponent id="fromConcavityMean" featureName="Concavity Mean"></FormComponent>
+        <FormComponent id="fromConcanePointsMean" featureName="Concave Points Mean"></FormComponent>
+        <FormComponent id="fromSymmetryMean" featureName="Symmetry Mean"></FormComponent>
+        <FormComponent id="fromFractalDimensionMean" featureName="Fractal Dimension Mean"></FormComponent>
+        <FormComponent id="fromRadiusSE" featureName="Radius SE"></FormComponent>
+        <FormComponent id="fromTextureSE" featureName="Texture SE"></FormComponent>
+        <FormComponent id="fromPerimeterSE" featureName="Perimeter SE"></FormComponent>
+        <FormComponent id="fromAreaSE" featureName="Area SE"></FormComponent>
+        <FormComponent id="fromSmoothnessSE" featureName="Smoothness SE"></FormComponent>
+        <FormComponent id="fromCompactnessSE" featureName="Compactness SE"></FormComponent>
+        <FormComponent id="fromConcavitySE" featureName="Concavity SE"></FormComponent>
+        <FormComponent id="fromConcavePointsSE" featureName="Concave Points SE"></FormComponent>
+        <FormComponent id="fromSymmetrySE" featureName="Symmetry SE"></FormComponent>
+        <FormComponent id="fromFractalDimesionSE" featureName="Fractal Dimension SE"></FormComponent>
+        <FormComponent id="fromRadiusWorst" featureName="Radius Worst"></FormComponent>
+        <FormComponent id="fromTextureWorst" featureName="Texture Worst"></FormComponent>
+        <FormComponent id="fromPerimeterWorst" featureName="Perimeter Worst"></FormComponent>
+        <FormComponent id="fromAreaMeanWorst" featureName="Area Worst"></FormComponent>
+        <FormComponent id="fromSmoothnessWorst" featureName="Smoothness Worst"></FormComponent>
+        <FormComponent id="fromCompactnessWorst" featureName="Compactness Worst"></FormComponent>
+        <FormComponent id="fromConcavityWorst" featureName="Concavity Worst"></FormComponent>
+        <FormComponent id="fromConcanePointsWorst" featureName="Concave Points Worst"></FormComponent>
+        <FormComponent id="fromSymmetryWorst" featureName="Symmetry Worst"></FormComponent>
+        <FormComponent id="fromFractalDimensionWorst" featureName="Fractal Dimension Worst"></FormComponent>
       </Form>
     </div>
   );
