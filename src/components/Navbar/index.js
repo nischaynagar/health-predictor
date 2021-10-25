@@ -39,12 +39,6 @@ function navbar() {
               <Nav.Link as={Link} to="/kidney">
                 Kidney
               </Nav.Link>
-              <Nav.Link as={Link} to="/malaria">
-                Malaria
-              </Nav.Link>
-              <Nav.Link as={Link} to="/pneumonia">
-                Pneumonia
-              </Nav.Link>
 
               <Nav.Link as={Link} to="/about">
                 About

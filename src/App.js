@@ -16,8 +16,6 @@ import Heart from "./components/Heart";
 import Home from "./components/Home";
 import Kidney from "./components/Kidney";
 import Liver from "./components/Liver";
-import Malaria from "./components/Malaria";
-import Pneumonia from "./components/Pneumonia";
 
 function App() {
   return (
@@ -28,8 +26,6 @@ function App() {
         <Route exact path="/liver" component={Liver} />
         <Route exact path="/heart" component={Heart} />
         <Route exact path="/kidney" component={Kidney} />
-        <Route exact path="/malaria" component={Malaria} />
-        <Route exact path="/pneumonia" component={Pneumonia} />
         <Route exact path="/about" component={About} />
         <Route path="/" component={Home} />
         <Route
