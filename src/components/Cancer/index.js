@@ -4,7 +4,6 @@ import FormComponent from "../Form/form";
 import { useState } from "react";
 
 function Cancer() {
-
   const [features, setFeatures] = useState([]);
   const [radiusMean, setRadiusMean] = useState(0);
   const [textureMean, setTextureMean] = useState(0);
@@ -36,139 +35,267 @@ function Cancer() {
   const [concavePointsWorst, setConcavePointsWorst] = useState(0);
   const [symmetryWorst, setSymmetryWorst] = useState(0);
   const [fractalDimensionWorst, setFractalDimensionWorst] = useState(0);
-  
 
-
-  function handleClick(){
-        console.log(radiusMean + " " + smoothnessMean + " " + fractalDimensionWorst);
+  function handleClick() {
+    console.log(
+      radiusMean + " " + smoothnessMean + " " + fractalDimensionWorst
+    );
   }
-  function changeRadiusMean(a){
+  function changeRadiusMean(a) {
     setRadiusMean(a);
   }
-  function changeTextureMean(a){
+  function changeTextureMean(a) {
     setTextureMean(a);
   }
-  function changePerimeterMean(a){
+  function changePerimeterMean(a) {
     setPerimeterMean(a);
   }
-  function changeAreaMean(a){
+  function changeAreaMean(a) {
     setAreaMean(a);
   }
-  function changeSmoothnessMean(a){
+  function changeSmoothnessMean(a) {
     setSmoothnessMean(a);
   }
-  function changeCompactnessMean(a){
+  function changeCompactnessMean(a) {
     setCompactnessMean(a);
   }
-  function changeConcavityMean(a){
+  function changeConcavityMean(a) {
     setConcavityMean(a);
   }
-  function changeConcavePointsMean(a){
+  function changeConcavePointsMean(a) {
     setConcavePointsMean(a);
   }
-  function changeSymmetryMean(a){
+  function changeSymmetryMean(a) {
     setSymmetryMean(a);
   }
-  function changeFractalDimensionMean(a){
+  function changeFractalDimensionMean(a) {
     setFractalDimensionMean(a);
   }
-  function changeRadiusSE(a){
+  function changeRadiusSE(a) {
     setRadiusSE(a);
   }
-  function changeTextureSE(a){
+  function changeTextureSE(a) {
     setTextureSE(a);
   }
-  function changePerimeterSE(a){
+  function changePerimeterSE(a) {
     setPerimeterSE(a);
   }
-  function changeAreaSE(a){
+  function changeAreaSE(a) {
     setAreaSE(a);
   }
-  function changeSmoothnessSE(a){
+  function changeSmoothnessSE(a) {
     setSmoothnessSE(a);
   }
-  function changeCompactnessSE(a){
+  function changeCompactnessSE(a) {
     setCompactnessSE(a);
   }
-  function changeConcavitySE(a){
+  function changeConcavitySE(a) {
     setConcavitySE(a);
   }
-  function changeConcavePointsSE(a){
+  function changeConcavePointsSE(a) {
     setConcavePointsSE(a);
   }
-  function changeSymmetrySE(a){
+  function changeSymmetrySE(a) {
     setSymmetrySE(a);
   }
-  function changeFractalDimensionSE(a){
+  function changeFractalDimensionSE(a) {
     setFractalDimensionSE(a);
   }
-  function changeRadiusWorst(a){
+  function changeRadiusWorst(a) {
     setRadiusWorst(a);
   }
-  function changeTextureWorst(a){
+  function changeTextureWorst(a) {
     setTextureWorst(a);
   }
-  function changePerimeterWorst(a){
+  function changePerimeterWorst(a) {
     setPerimeterWorst(a);
   }
-  function changeAreaWorst(a){
+  function changeAreaWorst(a) {
     setAreaWorst(a);
   }
-  function changeSmoothnessWorst(a){
+  function changeSmoothnessWorst(a) {
     setSmoothnessWorst(a);
   }
-  function changeCompactnessWorst(a){
+  function changeCompactnessWorst(a) {
     setCompactnessWorst(a);
   }
-  function changeConcavityWorst(a){
+  function changeConcavityWorst(a) {
     setConcavityWorst(a);
   }
-  function changeConcavePointsWorst(a){
+  function changeConcavePointsWorst(a) {
     setConcavePointsWorst(a);
   }
-  function changeSymmetryWorst(a){
+  function changeSymmetryWorst(a) {
     setSymmetryWorst(a);
   }
-  function changeFractalDimensionWorst(a){
+  function changeFractalDimensionWorst(a) {
     setFractalDimensionWorst(a);
   }
 
   return (
     <div className="container">
       <h3 className="mb-4">Please fill the details</h3>
-      
+
       <Form>
-        <FormComponent id="fromRadiusMean" featureName="Radius Mean" func={changeRadiusMean} ></FormComponent>
-        <FormComponent id="fromTextureMean" featureName="Texture Mean" func={changeTextureMean} ></FormComponent>
-        <FormComponent id="fromPerimeterMean" featureName="Perimeter Mean" func={changePerimeterMean} ></FormComponent>
-        <FormComponent id="fromAreaMean" featureName="Area Mean" func={changeAreaMean} ></FormComponent>
-        <FormComponent id="fromSmoothnessMean" featureName="Smoothness Mean" func={changeSmoothnessMean} ></FormComponent>
-        <FormComponent id="fromCompactnessMean" featureName="Compactness Mean" func={changeCompactnessMean} ></FormComponent>
-        <FormComponent id="fromConcavityMean" featureName="Concavity Mean" func={changeConcavityMean} ></FormComponent>
-        <FormComponent id="fromConcanePointsMean" featureName="Concave Points Mean" func={changeConcavePointsMean} ></FormComponent>
-        <FormComponent id="fromSymmetryMean" featureName="Symmetry Mean" func={changeSymmetryMean} ></FormComponent>
-        <FormComponent id="fromFractalDimensionMean" featureName="Fractal Dimension Mean" func={changeFractalDimensionMean} ></FormComponent>
-        <FormComponent id="fromRadiusSE" featureName="Radius SE" func={changeRadiusSE} ></FormComponent>
-        <FormComponent id="fromTextureSE" featureName="Texture SE" func={changeTextureSE} ></FormComponent>
-        <FormComponent id="fromPerimeterSE" featureName="Perimeter SE" func={changePerimeterSE} ></FormComponent>
-        <FormComponent id="fromAreaSE" featureName="Area SE" func={changeAreaSE} ></FormComponent>
-        <FormComponent id="fromSmoothnessSE" featureName="Smoothness SE" func={changeSmoothnessSE} ></FormComponent>
-        <FormComponent id="fromCompactnessSE" featureName="Compactness SE" func={changeCompactnessSE} ></FormComponent>
-        <FormComponent id="fromConcavitySE" featureName="Concavity SE" func={changeConcavitySE} ></FormComponent>
-        <FormComponent id="fromConcavePointsSE" featureName="Concave Points SE" func={changeConcavePointsSE} ></FormComponent>
-        <FormComponent id="fromSymmetrySE" featureName="Symmetry SE" func={changeSymmetrySE} ></FormComponent>
-        <FormComponent id="fromFractalDimesionSE" featureName="Fractal Dimension SE" func={changeFractalDimensionSE} ></FormComponent>
-        <FormComponent id="fromRadiusWorst" featureName="Radius Worst" func={changeRadiusWorst} ></FormComponent>
-        <FormComponent id="fromTextureWorst" featureName="Texture Worst" func={changeTextureWorst} ></FormComponent>
-        <FormComponent id="fromPerimeterWorst" featureName="Perimeter Worst" func={changePerimeterWorst} ></FormComponent>
-        <FormComponent id="fromAreaWorst" featureName="Area Worst" func={changeAreaWorst} ></FormComponent>
-        <FormComponent id="fromSmoothnessWorst" featureName="Smoothness Worst" func={changeSmoothnessWorst} ></FormComponent>
-        <FormComponent id="fromCompactnessWorst" featureName="Compactness Worst" func={changeCompactnessWorst} ></FormComponent>
-        <FormComponent id="fromConcavityWorst" featureName="Concavity Worst" func={changeConcavityWorst} ></FormComponent>
-        <FormComponent id="fromConcanePointsWorst" featureName="Concave Points Worst" func={changeConcavePointsWorst} ></FormComponent>
-        <FormComponent id="fromSymmetryWorst" featureName="Symmetry Worst" func={changeSymmetryWorst} ></FormComponent>
-        <FormComponent id="fromFractalDimensionWorst" featureName="Fractal Dimension Worst" func={changeFractalDimensionWorst} ></FormComponent>
-        <Button variant="warning" onClick={handleClick}>SUBMIT</Button>{' '}
+        <Row>
+          <Col md={6} className="px-0">
+            <FormComponent
+              id="fromRadiusMean"
+              featureName="Radius Mean"
+              func={changeRadiusMean}
+            ></FormComponent>
+            <FormComponent
+              id="fromTextureMean"
+              featureName="Texture Mean"
+              func={changeTextureMean}
+            ></FormComponent>
+            <FormComponent
+              id="fromPerimeterMean"
+              featureName="Perimeter Mean"
+              func={changePerimeterMean}
+            ></FormComponent>
+            <FormComponent
+              id="fromAreaMean"
+              featureName="Area Mean"
+              func={changeAreaMean}
+            ></FormComponent>
+            <FormComponent
+              id="fromSmoothnessMean"
+              featureName="Smoothness Mean"
+              func={changeSmoothnessMean}
+            ></FormComponent>
+            <FormComponent
+              id="fromCompactnessMean"
+              featureName="Compactness Mean"
+              func={changeCompactnessMean}
+            ></FormComponent>
+            <FormComponent
+              id="fromConcavityMean"
+              featureName="Concavity Mean"
+              func={changeConcavityMean}
+            ></FormComponent>
+            <FormComponent
+              id="fromConcanePointsMean"
+              featureName="Concave Points Mean"
+              func={changeConcavePointsMean}
+            ></FormComponent>
+            <FormComponent
+              id="fromSymmetryMean"
+              featureName="Symmetry Mean"
+              func={changeSymmetryMean}
+            ></FormComponent>
+            <FormComponent
+              id="fromFractalDimensionMean"
+              featureName="Fractal Dimension Mean"
+              func={changeFractalDimensionMean}
+            ></FormComponent>
+            <FormComponent
+              id="fromRadiusSE"
+              featureName="Radius SE"
+              func={changeRadiusSE}
+            ></FormComponent>
+            <FormComponent
+              id="fromTextureSE"
+              featureName="Texture SE"
+              func={changeTextureSE}
+            ></FormComponent>
+            <FormComponent
+              id="fromPerimeterSE"
+              featureName="Perimeter SE"
+              func={changePerimeterSE}
+            ></FormComponent>
+            <FormComponent
+              id="fromAreaSE"
+              featureName="Area SE"
+              func={changeAreaSE}
+            ></FormComponent>
+            <FormComponent
+              id="fromSmoothnessSE"
+              featureName="Smoothness SE"
+              func={changeSmoothnessSE}
+            ></FormComponent>
+          </Col>
+          <Col md={6} className="px-0">
+            <FormComponent
+              id="fromCompactnessSE"
+              featureName="Compactness SE"
+              func={changeCompactnessSE}
+            ></FormComponent>
+            <FormComponent
+              id="fromConcavitySE"
+              featureName="Concavity SE"
+              func={changeConcavitySE}
+            ></FormComponent>
+            <FormComponent
+              id="fromConcavePointsSE"
+              featureName="Concave Points SE"
+              func={changeConcavePointsSE}
+            ></FormComponent>
+            <FormComponent
+              id="fromSymmetrySE"
+              featureName="Symmetry SE"
+              func={changeSymmetrySE}
+            ></FormComponent>
+            <FormComponent
+              id="fromFractalDimesionSE"
+              featureName="Fractal Dimension SE"
+              func={changeFractalDimensionSE}
+            ></FormComponent>
+            <FormComponent
+              id="fromRadiusWorst"
+              featureName="Radius Worst"
+              func={changeRadiusWorst}
+            ></FormComponent>
+            <FormComponent
+              id="fromTextureWorst"
+              featureName="Texture Worst"
+              func={changeTextureWorst}
+            ></FormComponent>
+            <FormComponent
+              id="fromPerimeterWorst"
+              featureName="Perimeter Worst"
+              func={changePerimeterWorst}
+            ></FormComponent>
+            <FormComponent
+              id="fromAreaWorst"
+              featureName="Area Worst"
+              func={changeAreaWorst}
+            ></FormComponent>
+            <FormComponent
+              id="fromSmoothnessWorst"
+              featureName="Smoothness Worst"
+              func={changeSmoothnessWorst}
+            ></FormComponent>
+            <FormComponent
+              id="fromCompactnessWorst"
+              featureName="Compactness Worst"
+              func={changeCompactnessWorst}
+            ></FormComponent>
+            <FormComponent
+              id="fromConcavityWorst"
+              featureName="Concavity Worst"
+              func={changeConcavityWorst}
+            ></FormComponent>
+            <FormComponent
+              id="fromConcanePointsWorst"
+              featureName="Concave Points Worst"
+              func={changeConcavePointsWorst}
+            ></FormComponent>
+            <FormComponent
+              id="fromSymmetryWorst"
+              featureName="Symmetry Worst"
+              func={changeSymmetryWorst}
+            ></FormComponent>
+            <FormComponent
+              id="fromFractalDimensionWorst"
+              featureName="Fractal Dimension Worst"
+              func={changeFractalDimensionWorst}
+            ></FormComponent>
+          </Col>
+        </Row>
+        <Button variant="warning" onClick={handleClick}>
+          SUBMIT
+        </Button>{" "}
       </Form>
     </div>
   );
