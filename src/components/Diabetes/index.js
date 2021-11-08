@@ -13,11 +13,9 @@ function Diabetes() {
   const [BMI, setBMI] = useState(0);
   const [DiabetesPedigreeFunction, setDiabetesPedigreeFunction] = useState(0);
   const [Age, setAge] = useState(0);
-  
+
   function handleClick() {
-    console.log(
-      Pregnancies + " " + Insulin 
-    );
+    console.log(Pregnancies + " " + Insulin);
   }
   function changePregnancies(a) {
     setPregnancies(a);
@@ -44,10 +42,10 @@ function Diabetes() {
     setAge(a);
   }
   return (
-    <div className="container">
+    <>
       <h3 className="mb-4">Please fill the details</h3>
 
-      <Form>
+      <Form className="mb-5">
         <Row>
           <Col md={6} className="px-0">
             <FormComponent
@@ -89,14 +87,14 @@ function Diabetes() {
               id="fromAge"
               featureName="Age"
               func={changeAge}
-              ></FormComponent>
+            ></FormComponent>
           </Col>
         </Row>
-        <Button variant="warning" onClick={handleClick}>
+        <Button variant="primary" onClick={handleClick}>
           SUBMIT
         </Button>{" "}
       </Form>
-    </div>
+    </>
   );
 }
 

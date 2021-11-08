@@ -17,11 +17,12 @@ function Kidney() {
   const [HTN, setHTN] = useState(0);
   const [DM, setDM] = useState(0);
   const [Appet, setAppet] = useState(0);
-  
+
   function handleClick() {
-    console.log(
-      //Sex + " " + RestECG 
-    );
+    console
+      .log
+      //Sex + " " + RestECG
+      ();
   }
   function changeAge(a) {
     setAge(a);
@@ -60,10 +61,10 @@ function Kidney() {
     setAppet(a);
   }
   return (
-    <div className="container">
+    <>
       <h3 className="mb-4">Please fill the details</h3>
 
-      <Form>
+      <Form className="mb-5">
         <Row>
           <Col md={6} className="px-0">
             <FormComponent
@@ -96,6 +97,8 @@ function Kidney() {
               featureName="BU"
               func={changeBU}
             ></FormComponent>
+          </Col>
+          <Col md={6} className="px-0">
             <FormComponent
               id="fromSC"
               featureName="SC"
@@ -128,11 +131,11 @@ function Kidney() {
             ></FormComponent>
           </Col>
         </Row>
-        <Button variant="warning" onClick={handleClick}>
-          SUThalachT
+        <Button variant="primary" onClick={handleClick}>
+          SUBMIT
         </Button>{" "}
       </Form>
-    </div>
+    </>
   );
 }
 export default Kidney;

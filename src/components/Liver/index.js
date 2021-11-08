@@ -10,16 +10,16 @@ function Liver() {
   const [Direct_Bilirubin, setDirect_Bilirubin] = useState(0);
   const [Alkaline_Phosphotase, setAlkaline_Phosphotase] = useState(0);
   const [Alamine_Aminotransferase, setAlamine_Aminotransferase] = useState(0);
-  const [Aspartate_Aminotransferase, setAspartate_Aminotransferase] = useState(0);
+  const [Aspartate_Aminotransferase, setAspartate_Aminotransferase] =
+    useState(0);
   const [Age, setAge] = useState(0);
   const [Total_Protiens, setTotal_Protiens] = useState(0);
   const [Albumin, setAlbumin] = useState(0);
-  const [Albumin_and_Globulin_Ratio, setAlbumin_and_Globulin_Ratio] = useState(0);
-  
+  const [Albumin_and_Globulin_Ratio, setAlbumin_and_Globulin_Ratio] =
+    useState(0);
+
   function handleClick() {
-    console.log(
-      Sex + " " + Alamine_Aminotransferase 
-    );
+    console.log(Sex + " " + Alamine_Aminotransferase);
   }
   function changeSex(a) {
     setSex(a);
@@ -52,10 +52,10 @@ function Liver() {
     setAlbumin_and_Globulin_Ratio(a);
   }
   return (
-    <div className="container">
+    <>
       <h3 className="mb-4">Please fill the details</h3>
 
-      <Form>
+      <Form className="mb-5">
         <Row>
           <Col md={6} className="px-0">
             <FormComponent
@@ -83,6 +83,8 @@ function Liver() {
               featureName="Alkaline Phosphotase"
               func={changeAlkaline_Phosphotase}
             ></FormComponent>
+          </Col>
+          <Col md={6} className="px-0">
             <FormComponent
               id="fromAlamine_Aminotransferase"
               featureName="Alamine Aminotransferase"
@@ -110,11 +112,11 @@ function Liver() {
             ></FormComponent>
           </Col>
         </Row>
-        <Button variant="warning" onClick={handleClick}>
+        <Button variant="primary" onClick={handleClick}>
           SUBMIT
         </Button>{" "}
       </Form>
-    </div>
+    </>
   );
 }
 export default Liver;

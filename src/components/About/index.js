@@ -3,7 +3,7 @@ import { Carousel } from "react-bootstrap";
 
 export default function About() {
   return (
-    <div>
+    <>
       {/* <Carousel>
         <Carousel.Item>
           <Carousel.Caption>
@@ -26,6 +26,6 @@ export default function About() {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel> */}
-    </div>
+    </>
   );
 }

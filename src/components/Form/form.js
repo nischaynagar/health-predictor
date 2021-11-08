@@ -16,7 +16,7 @@ function FormComponent(props) {
             {props.featureName}
           </Form.Label>
         </Col>
-        <Form.Control as={Col} sm="4" className="mx-sm-0 mx-4" />
+        <Form.Control onChange={handleChange} sm="4" className="mx-sm-0 mx-4" />
       </Form.Group>
     </div>
   );

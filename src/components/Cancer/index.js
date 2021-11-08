@@ -133,10 +133,10 @@ function Cancer() {
   }
 
   return (
-    <div className="container">
+    <>
       <h3 className="mb-4">Please fill the details</h3>
 
-      <Form>
+      <Form className="mb-5">
         <Row>
           <Col md={6} className="px-0">
             <FormComponent
@@ -293,11 +293,11 @@ function Cancer() {
             ></FormComponent>
           </Col>
         </Row>
-        <Button variant="warning" onClick={handleClick}>
+        <Button variant="primary" onClick={handleClick}>
           SUBMIT
         </Button>{" "}
       </Form>
-    </div>
+    </>
   );
 }
 

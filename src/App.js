@@ -20,20 +20,25 @@ import Liver from "./components/Liver";
 function App() {
   return (
     <>
-      <Switch>
-        <Route exact path="/cancer" component={Cancer} />
-        <Route exact path="/diabetes" component={Diabetes} />
-        <Route exact path="/liver" component={Liver} />
-        <Route exact path="/heart" component={Heart} />
-        <Route exact path="/kidney" component={Kidney} />
-        <Route exact path="/about" component={About} />
-        <Route path="/" component={Home} />
-        <Route
-          render={function () {
-            return <p>Not found</p>;
-          }}
-        />
-      </Switch>
+      <div className="container mb-4 pt-5">
+        <Switch>
+          <Route exact path="/cancer" component={Cancer} />
+          <Route exact path="/diabetes" component={Diabetes} />
+          <Route exact path="/liver" component={Liver} />
+          <Route exact path="/heart" component={Heart} />
+          <Route exact path="/kidney" component={Kidney} />
+          <Route exact path="/about" component={About} />
+          <Route path="/" component={Home} />
+          <Route
+            render={function () {
+              return <p>Not found</p>;
+            }}
+          />
+        </Switch>
+      </div>
+      <div className="py-2 bg-black text-white  w-100 position-fixed bottom-0">
+        <div className="container text-center">@copyright Nischay Nagar</div>
+      </div>
     </>
   );
 }

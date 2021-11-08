@@ -14,11 +14,9 @@ function Heart() {
   const [Age, setAge] = useState(0);
   const [Slope, setSlope] = useState(0);
   const [Thal, setThal] = useState(0);
-  
+
   function handleClick() {
-    console.log(
-      Sex + " " + RestECG 
-    );
+    console.log(Sex + " " + RestECG);
   }
   function changeSex(a) {
     setSex(a);
@@ -48,10 +46,10 @@ function Heart() {
     setThal(a);
   }
   return (
-    <div className="container">
+    <>
       <h3 className="mb-4">Please fill the details</h3>
 
-      <Form>
+      <Form className="mb-5">
         <Row>
           <Col md={6} className="px-0">
             <FormComponent
@@ -79,6 +77,8 @@ function Heart() {
               featureName="Serum Cholestrol (in mg/dl) "
               func={changeSerumCholestoral}
             ></FormComponent>
+          </Col>
+          <Col md={6} className="px-0">
             <FormComponent
               id="fromRestECG"
               featureName="RestECG"
@@ -106,11 +106,11 @@ function Heart() {
             ></FormComponent>
           </Col>
         </Row>
-        <Button variant="warning" onClick={handleClick}>
-          SUThalachT
+        <Button variant="primary" onClick={handleClick}>
+          SUBMIT
         </Button>{" "}
       </Form>
-    </div>
+    </>
   );
 }
 
