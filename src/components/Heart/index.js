@@ -90,6 +90,11 @@ function Heart() {
               func={changeThalach}
             ></FormComponent>
             <FormComponent
+              id="fromAge"
+              featureName="Age"
+              func={changeAge}
+            ></FormComponent>
+            <FormComponent
               id="fromSlope"
               featureName="Slope"
               func={changeSlope}
