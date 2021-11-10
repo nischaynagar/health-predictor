@@ -20,7 +20,7 @@ import Liver from "./components/Liver";
 function App() {
   return (
     <>
-      <div className="container mb-4 pt-5">
+      <div className="container mb-4 pt-5 font-08">
         <Switch>
           <Route exact path="/cancer" component={Cancer} />
           <Route exact path="/diabetes" component={Diabetes} />
@@ -37,7 +37,7 @@ function App() {
         </Switch>
       </div>
       <div className="py-2 bg-black text-white  w-100 position-fixed bottom-0">
-        <div className="container text-center">@copyright Nischay Nagar</div>
+        <div className="container text-center font-07">@copyright 2021</div>
       </div>
     </>
   );

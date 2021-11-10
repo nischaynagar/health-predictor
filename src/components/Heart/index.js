@@ -46,7 +46,7 @@ function Heart() {
     setThal(a);
   }
   return (
-    <>
+    <div className="py-4">
       <h3 className="mb-4">Please fill the details</h3>
 
       <Form className="mb-5">
@@ -110,7 +110,7 @@ function Heart() {
           SUBMIT
         </Button>{" "}
       </Form>
-    </>
+    </div>
   );
 }
 

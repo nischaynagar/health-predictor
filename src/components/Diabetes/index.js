@@ -42,7 +42,7 @@ function Diabetes() {
     setAge(a);
   }
   return (
-    <>
+    <div className="py-4">
       <h3 className="mb-4">Please fill the details</h3>
 
       <Form className="mb-5">
@@ -94,7 +94,7 @@ function Diabetes() {
           SUBMIT
         </Button>{" "}
       </Form>
-    </>
+    </div>
   );
 }
 

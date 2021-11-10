@@ -52,7 +52,7 @@ function Liver() {
     setAlbumin_and_Globulin_Ratio(a);
   }
   return (
-    <>
+    <div className="py-4">
       <h3 className="mb-4">Please fill the details</h3>
 
       <Form className="mb-5">
@@ -116,7 +116,7 @@ function Liver() {
           SUBMIT
         </Button>{" "}
       </Form>
-    </>
+    </div>
   );
 }
 export default Liver;

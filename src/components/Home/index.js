@@ -2,7 +2,7 @@ import React from "react";
 
 function Home() {
   return (
-    <div className="py-2 mb-4">
+    <div className="py-4 mb-4">
       <div className="mb-4">
         <h3>Introduction</h3>
         Welcome to our web application “Health Predictor”. Health Predictor is a
