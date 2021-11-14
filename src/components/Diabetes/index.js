@@ -2,9 +2,10 @@ import React from "react";
 import { Col, FloatingLabel, Form, Row, Button } from "react-bootstrap";
 import FormComponent from "../Form/form";
 import { useState } from "react";
+import Alert from '@mui/material/Alert';
+import { Slide, Snackbar } from "@mui/material";
 
 function Diabetes() {
-  const [features, setFeatures] = useState([]);
   const [Pregnancies, setPregnancies] = useState(0);
   const [Glucose, setGlucose] = useState(0);
   const [BloodPressure, setBloodPressure] = useState(0);
@@ -14,9 +15,43 @@ function Diabetes() {
   const [DiabetesPedigreeFunction, setDiabetesPedigreeFunction] = useState(0);
   const [Age, setAge] = useState(0);
 
-  function handleClick() {
-    console.log(Pregnancies + " " + Insulin);
+  function TransitionUp(props) {
+    return <Slide {...props} direction="up" />;
   }
+
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertType, setAlertType] = useState(0);
+  const [alertString, setAlertString] = useState(0);
+
+  function handleClick() {
+    fetch('/data', {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        id: 3,
+        features: [Pregnancies,Glucose,BloodPressure,SkinThickness,Insulin,BMI,DiabetesPedigreeFunction,Age]
+      })
+    })
+      .then(response => response.json())
+      .then(json => {
+        console.log(json['DIAG'], json['PROB_POS'])
+        if (json['DIAG'] === '0') {
+          setAlertType("success")
+          setAlertString("There's "+(json['PROB_NEG']*100).toFixed(2)+" % chance that you're healthy!")
+          setAlertOpen(true)
+        }
+        else if (json['DIAG'] === '1') {
+          setAlertType("error")
+          setAlertString("There's "+(json['PROB_POS']*100).toFixed(2)+" % chance that you've Diabetes :(")
+          setAlertOpen(true)
+        }
+    })
+  }
+
+
   function changePregnancies(a) {
     setPregnancies(a);
   }
@@ -94,6 +129,15 @@ function Diabetes() {
           SUBMIT
         </Button>{" "}
       </Form>
+     
+
+      <Snackbar style={{ marginBottom: '10vh', marginRight: '30vw' }} open={alertOpen} autoHideDuration={5600} onClose={()=>setAlertOpen(false)} TransitionComponent={TransitionUp} anchorOrigin={{ vertical:'center', horizontal:'right' }}>
+                  <Alert variant="outlined" severity={alertType} onClose={()=>setAlertOpen(false)}>
+            {alertString}
+        </Alert>
+              </Snackbar>
+      
+      
     </div>
   );
 }
