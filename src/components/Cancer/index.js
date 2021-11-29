@@ -1,5 +1,5 @@
 import React from "react";
-import { Col, FloatingLabel, Form, Row, Button} from "react-bootstrap";
+import { Col, FloatingLabel, Form, Row, Button } from "react-bootstrap";
 import FormComponent from "../Form/form";
 import { useState } from "react";
 import { Alert, Slide, Snackbar } from "@mui/material";
@@ -40,41 +40,78 @@ function Cancer() {
   function TransitionUp(props) {
     return <Slide {...props} direction="up" />;
   }
-  
+
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertType, setAlertType] = useState(0);
   const [alertString, setAlertString] = useState(0);
 
   function handleClick() {
-    fetch('/data', {
-      method: 'POST',
-      mode: 'no-cors',
+    fetch("/data", {
+      method: "POST",
+      mode: "no-cors",
       headers: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
         id: 1,
-        features: [radiusMean, textureMean, perimeterMean, areaMean, smoothnessMean, compactnessMean, concavityMean, concavePointsMean, symmetryMean, fractalDimensionMean, radiusSE, textureSE, perimeterSE, areaSE, smoothnessSE, compactnessSE, concavitySE,
-        concavePointsSE,symmetrySE,fractalDimensionSE,radiusWorst,textureWorst,perimeterWorst,areaWorst,smoothnessWorst,compactnessWorst,concavityWorst,concavePointsWorst,symmetryWorst,fractalDimensionWorst]
-      })
+        features: [
+          radiusMean,
+          textureMean,
+          perimeterMean,
+          areaMean,
+          smoothnessMean,
+          compactnessMean,
+          concavityMean,
+          concavePointsMean,
+          symmetryMean,
+          fractalDimensionMean,
+          radiusSE,
+          textureSE,
+          perimeterSE,
+          areaSE,
+          smoothnessSE,
+          compactnessSE,
+          concavitySE,
+          concavePointsSE,
+          symmetrySE,
+          fractalDimensionSE,
+          radiusWorst,
+          textureWorst,
+          perimeterWorst,
+          areaWorst,
+          smoothnessWorst,
+          compactnessWorst,
+          concavityWorst,
+          concavePointsWorst,
+          symmetryWorst,
+          fractalDimensionWorst,
+        ],
+      }),
     })
-      .then(response => response.json())
-      .then(json => {
-        console.log(json['DIAG'], json['PROB_POS'])
-        if (json['DIAG'] === 'B') {
-          setAlertType("success")
-          console.log(alertType)
-          setAlertString("There's "+(json['PROB_NEG']*100).toFixed(2)+" % chance that you're healthy!")
-          setAlertOpen(true)
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json["DIAG"], json["PROB_POS"]);
+        if (json["DIAG"] === "B") {
+          setAlertType("success");
+          console.log(alertType);
+          setAlertString(
+            "There's " +
+              (json["PROB_NEG"] * 100).toFixed(2) +
+              " % chance that you're healthy!"
+          );
+          setAlertOpen(true);
+        } else if (json["DIAG"] === "M") {
+          setAlertType("error");
+          setAlertString(
+            "There's " +
+              (json["PROB_POS"] * 100).toFixed(2) +
+              " % chance that you've Cancer :("
+          );
+          setAlertOpen(true);
         }
-        else if (json['DIAG'] === 'M') {
-          setAlertType("error")
-          setAlertString("There's "+(json['PROB_POS']*100).toFixed(2)+" % chance that you've Cancer :(")
-          setAlertOpen(true)
-        }
-    })
+      });
   }
-  
+
   function changeRadiusMean(a) {
     setRadiusMean(a);
   }
@@ -332,14 +369,23 @@ function Cancer() {
         </Button>{" "}
       </Form>
 
-
-      <Snackbar style={{ marginBottom: '10vh', marginRight: '30vw' }} open={alertOpen} autoHideDuration={5600} onClose={()=>setAlertOpen(false)} TransitionComponent={TransitionUp} anchorOrigin={{ vertical:'center', horizontal:'right' }}>
-                  <Alert variant="outlined" severity={alertType} onClose={()=>setAlertOpen(false)}>
-            {alertString}
+      <Snackbar
+        style={{ marginBottom: "10vh", marginRight: "30vw" }}
+        open={alertOpen}
+        autoHideDuration={5600}
+        onClose={() => setAlertOpen(false)}
+        TransitionComponent={TransitionUp}
+        anchorOrigin={{ vertical: "center", horizontal: "right" }}
+      >
+        <Alert
+          variant="outlined"
+          severity={alertType}
+          onClose={() => setAlertOpen(false)}
+        >
+          {alertString}
         </Alert>
       </Snackbar>
     </div>
-  
   );
 }
 

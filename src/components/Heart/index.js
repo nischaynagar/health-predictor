@@ -1,8 +1,16 @@
 import React from "react";
-import { Col, FloatingLabel, Form, Row, Button} from "react-bootstrap";
+import { Col, FloatingLabel, Form, Row, Button } from "react-bootstrap";
 import FormComponent from "../Form/form";
 import { useState } from "react";
 import { Alert, Slide, Snackbar } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+import ProgressComponent from "../ProgressBar";
 
 function Heart() {
   const [features, setFeatures] = useState([]);
@@ -20,6 +28,17 @@ function Heart() {
   const [ca, setCa] = useState(0);
   const [Thal, setThal] = useState(0);
 
+  const [openDailog, setOpenDialog] = useState(false);
+  const theme = useTheme();
+
+  const handleClickOpenDailog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDailog = () => {
+    setOpenDialog(false);
+  };
+
   function TransitionUp(props) {
     return <Slide {...props} direction="up" />;
   }
@@ -28,36 +47,41 @@ function Heart() {
   const [alertString, setAlertString] = useState(0);
 
   function handleClick() {
-    fetch('/data', {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        id: 2,
-        features: [Age,Sex,Chestpaintype,Trestbps,SerumCholestoral,fbs,RestECG,Thalach,exang,oldpeak,Slope,ca,Thal]
-      })
-    })
-      .then(response => response.json())
-      .then(json => {
-        console.log(json['DIAG'], json['PROB_POS'])
-        if (json['DIAG'] === '0') {
-          setAlertType("success")
-          console.log(alertType)
-          setAlertString("There's "+(json['PROB_NEG']*100).toFixed(2)+" % chance that you're healthy!")
-          setAlertOpen(true)
-        }
-        else if (json['DIAG'] === '1') {
-          setAlertType("error")
-          setAlertString("There's "+(json['PROB_POS']*100).toFixed(2)+" % chance that you've Heart disease :(")
-          setAlertOpen(true)
-        }
-    })
+    // fetch('/data', {
+    //   method: 'POST',
+    //   mode: 'no-cors',
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //   },
+    //   body: JSON.stringify({
+    //     id: 2,
+    //     features: [Age,Sex,Chestpaintype,Trestbps,SerumCholestoral,fbs,RestECG,Thalach,exang,oldpeak,Slope,ca,Thal]
+    //   })
+    // })
+    //   .then(response => response.json())
+    //   .then(json => {
+    //     console.log(json['DIAG'], json['PROB_POS'])
+    //     if (json['DIAG'] === '0') {
+    //       setAlertType("success")
+    //       console.log(alertType)
+    //       setAlertString("There's "+(json['PROB_NEG']*100).toFixed(2)+" % chance that you're healthy!")
+    //       setAlertOpen(true)
+    //     }
+    //     else if (json['DIAG'] === '1') {
+    //       setAlertType("error")
+    //       setAlertString("There's "+(json['PROB_POS']*100).toFixed(2)+" % chance that you've Heart disease :(")
+    //       setAlertOpen(true)
+    //     }
+    // })
+
+    // setAlertType("success");
+    setAlertString("There's  % chance that you're healthy!");
+    // setAlertOpen(true);
+    setOpenDialog(true);
   }
 
   function changeAge(a) {
-    setAge(a)
+    setAge(a);
   }
   function changeSex(a) {
     setSex(a);
@@ -127,19 +151,18 @@ function Heart() {
               featureName="Serum Cholestrol (in mg/dl) "
               func={changeSerumCholestoral}
             ></FormComponent>
-             <FormComponent
+            <FormComponent
               id="fromFbs"
               featureName="FBS (fasting blood sugar) "
               func={changefbs}
             ></FormComponent>
-              <FormComponent
+            <FormComponent
               id="fromRestECG"
               featureName="RestECG"
               func={changeRestECG}
             ></FormComponent>
           </Col>
           <Col md={6} className="px-0">
-          
             <FormComponent
               id="fromThalach"
               featureName="Thalach"
@@ -160,7 +183,7 @@ function Heart() {
               featureName="Slope"
               func={changeSlope}
             ></FormComponent>
-             <FormComponent
+            <FormComponent
               id="fromCa"
               featureName="ca (number of major vessels (0-3) colored by flourosopy)"
               func={changeCa}
@@ -177,11 +200,44 @@ function Heart() {
         </Button>{" "}
       </Form>
 
-      <Snackbar style={{ marginBottom: '10vh', marginRight: '30vw' }} open={alertOpen} autoHideDuration={5600} onClose={()=>setAlertOpen(false)} TransitionComponent={TransitionUp} anchorOrigin={{ vertical:'center', horizontal:'right' }}>
-                  <Alert variant="outlined" severity={alertType} onClose={()=>setAlertOpen(false)}>
-            {alertString}
+      <Dialog
+        open={openDailog}
+        onClose={handleCloseDailog}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title">
+          {"Your Heart Disease Prediction"}
+        </DialogTitle>
+        <DialogContent>
+          <ProgressComponent />
+          <DialogContentText>{alertString}</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleCloseDailog}>
+            Not Omk
+          </Button>
+          <Button onClick={handleCloseDailog} autoFocus>
+            OMK
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* <Snackbar
+        style={{ marginBottom: "10vh", marginRight: "30vw" }}
+        open={alertOpen}
+        autoHideDuration={5600}
+        onClose={() => setAlertOpen(false)}
+        TransitionComponent={TransitionUp}
+        anchorOrigin={{ vertical: "center", horizontal: "right" }}
+      >
+        <Alert
+          variant="outlined"
+          severity={alertType}
+          onClose={() => setAlertOpen(false)}
+        >
+          {alertString}
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
     </div>
   );
 }

@@ -2,8 +2,27 @@ import React from "react";
 import { Col, FloatingLabel, Form, Row, Button } from "react-bootstrap";
 import FormComponent from "../Form/form";
 import { useState } from "react";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
 
 function Kidney() {
+  const [openDailog, setOpenDialog] = useState(false);
+  const theme = useTheme();
+  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
+
+  const handleClickOpenDailog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDailog = () => {
+    setOpenDialog(false);
+  };
+
   const [features, setFeatures] = useState([]);
   const [Age, setAge] = useState(0);
   const [BP, setBP] = useState(0);
@@ -18,12 +37,7 @@ function Kidney() {
   const [DM, setDM] = useState(0);
   const [Appet, setAppet] = useState(0);
 
-  function handleClick() {
-    console
-      .log
-      //Sex + " " + RestECG
-      ();
-  }
+  function handleClick() {}
   function changeAge(a) {
     setAge(a);
   }
@@ -131,10 +145,40 @@ function Kidney() {
             ></FormComponent>
           </Col>
         </Row>
-        <Button variant="primary" onClick={handleClick}>
+        <Button variant="primary" onClick={handleClickOpenDailog}>
           SUBMIT
         </Button>{" "}
       </Form>
+
+      <div>
+        <Button variant="outlined" onClick={handleClickOpenDailog}>
+          Open responsive dialog
+        </Button>
+        <Dialog
+          fullScreen={fullScreen}
+          openDailog={openDailog}
+          onClose={handleCloseDailog}
+          aria-labelledby="responsive-dialog-title"
+        >
+          <DialogTitle id="responsive-dialog-title">
+            {"Use Google's location service?"}
+          </DialogTitle>
+          <DialogContent>
+            <DialogContentText>
+              Let Google help apps determine location. This means sending
+              anonymous location data to Google, even when no apps are running.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button autoFocus onClick={handleCloseDailog}>
+              Disagree
+            </Button>
+            <Button onClick={handleCloseDailog} autoFocus>
+              Agree
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </div>
     </div>
   );
 }
