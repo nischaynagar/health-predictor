@@ -27,6 +27,7 @@ function Heart() {
   const [Slope, setSlope] = useState(0);
   const [ca, setCa] = useState(0);
   const [Thal, setThal] = useState(0);
+  const [prob, setProb] = useState(0);
 
   const [openDailog, setOpenDialog] = useState(false);
   const theme = useTheme();
@@ -47,36 +48,50 @@ function Heart() {
   const [alertString, setAlertString] = useState(0);
 
   function handleClick() {
-    // fetch('/data', {
-    //   method: 'POST',
-    //   mode: 'no-cors',
-    //   headers: {
-    //     'Content-Type': 'application/json'
-    //   },
-    //   body: JSON.stringify({
-    //     id: 2,
-    //     features: [Age,Sex,Chestpaintype,Trestbps,SerumCholestoral,fbs,RestECG,Thalach,exang,oldpeak,Slope,ca,Thal]
-    //   })
-    // })
-    //   .then(response => response.json())
-    //   .then(json => {
-    //     console.log(json['DIAG'], json['PROB_POS'])
-    //     if (json['DIAG'] === '0') {
-    //       setAlertType("success")
-    //       console.log(alertType)
-    //       setAlertString("There's "+(json['PROB_NEG']*100).toFixed(2)+" % chance that you're healthy!")
-    //       setAlertOpen(true)
-    //     }
-    //     else if (json['DIAG'] === '1') {
-    //       setAlertType("error")
-    //       setAlertString("There's "+(json['PROB_POS']*100).toFixed(2)+" % chance that you've Heart disease :(")
-    //       setAlertOpen(true)
-    //     }
-    // })
+    fetch("/data", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: 2,
+        features: [
+          Age,
+          Sex,
+          Chestpaintype,
+          Trestbps,
+          SerumCholestoral,
+          fbs,
+          RestECG,
+          Thalach,
+          exang,
+          oldpeak,
+          Slope,
+          ca,
+          Thal,
+        ],
+      }),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json["DIAG"], json["PROB_POS"]);
+        if (json["DIAG"] === "0") {
+          setAlertType("success");
+          console.log(alertType);
+          setProb((json["PROB_NEG"] * 100).toFixed(2));
+          setAlertString("There's " + prob + " % chance that you're healthy!");
+          setAlertOpen(true);
+        } else if (json["DIAG"] === "1") {
+          setAlertType("error");
+          setProb((json["PROB_POS"] * 100).toFixed(2));
+          setAlertString(
+            "There's " + prob + " % chance that you've Heart disease :("
+          );
+          setAlertOpen(true);
+        }
+      });
 
-    // setAlertType("success");
-    setAlertString("There's  % chance that you're healthy!");
-    // setAlertOpen(true);
     setOpenDialog(true);
   }
 
@@ -206,18 +221,15 @@ function Heart() {
         aria-labelledby="responsive-dialog-title"
       >
         <DialogTitle id="responsive-dialog-title">
-          {"Your Heart Disease Prediction"}
+          <h4>{"Your Heart Disease Prediction"}</h4>
         </DialogTitle>
         <DialogContent>
-          <ProgressComponent />
+          <ProgressComponent progressVal={prob} />
           <DialogContentText>{alertString}</DialogContentText>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={handleCloseDailog}>
-            Not Omk
-          </Button>
-          <Button onClick={handleCloseDailog} autoFocus>
-            OMK
+            Close
           </Button>
         </DialogActions>
       </Dialog>

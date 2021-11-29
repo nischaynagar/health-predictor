@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import ProgressBar from "./ProgressBar";
 
-const ProgressComponent = () => {
-  const [progress, setProgress] = useState(0);
+const ProgressComponent = ({ progressVal }) => {
+  const [progress, setProgress] = useState(progressVal);
   const [color, setColor] = useState("");
   const colorArray = ["#FF0000", "#63E13D"];
 
@@ -48,14 +48,6 @@ const ProgressComponent = () => {
         circleOneStroke="#d9edfe"
         circleTwoStroke={color}
       />
-      <p>
-        <input
-          type="number"
-          name="percent"
-          placeholder="Add Progress Value"
-          onChange={onChange}
-        />
-      </p>
       <button onClick={randomProgressValue}>Random</button>
     </div>
   );

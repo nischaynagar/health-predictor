@@ -36,9 +36,9 @@ function navbar() {
               <Nav.Link as={Link} to="/heart">
                 Heart
               </Nav.Link>
-              <Nav.Link as={Link} to="/kidney">
+              {/* <Nav.Link as={Link} to="/kidney">
                 Kidney
-              </Nav.Link>
+              </Nav.Link> */}
 
               <Nav.Link as={Link} to="/about">
                 About

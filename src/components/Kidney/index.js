@@ -9,11 +9,14 @@ import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
+import ProgressComponent from "../ProgressBar";
 
 function Kidney() {
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertType, setAlertType] = useState(0);
+  const [alertString, setAlertString] = useState(0);
   const [openDailog, setOpenDialog] = useState(false);
   const theme = useTheme();
-  const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   const handleClickOpenDailog = () => {
     setOpenDialog(true);
@@ -150,35 +153,24 @@ function Kidney() {
         </Button>{" "}
       </Form>
 
-      <div>
-        <Button variant="outlined" onClick={handleClickOpenDailog}>
-          Open responsive dialog
-        </Button>
-        <Dialog
-          fullScreen={fullScreen}
-          openDailog={openDailog}
-          onClose={handleCloseDailog}
-          aria-labelledby="responsive-dialog-title"
-        >
-          <DialogTitle id="responsive-dialog-title">
-            {"Use Google's location service?"}
-          </DialogTitle>
-          <DialogContent>
-            <DialogContentText>
-              Let Google help apps determine location. This means sending
-              anonymous location data to Google, even when no apps are running.
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions>
-            <Button autoFocus onClick={handleCloseDailog}>
-              Disagree
-            </Button>
-            <Button onClick={handleCloseDailog} autoFocus>
-              Agree
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
+      <Dialog
+        open={openDailog}
+        onClose={handleCloseDailog}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title">
+          <h4>{"Your Kidney Disease Prediction"}</h4>
+        </DialogTitle>
+        <DialogContent>
+          <ProgressComponent />
+          <DialogContentText>{alertString}</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleCloseDailog}>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }

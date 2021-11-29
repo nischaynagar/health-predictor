@@ -3,6 +3,14 @@ import { Col, FloatingLabel, Form, Row, Button } from "react-bootstrap";
 import FormComponent from "../Form/form";
 import { useState } from "react";
 import { Alert, Slide, Snackbar } from "@mui/material";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import { useTheme } from "@mui/material/styles";
+import ProgressComponent from "../ProgressBar";
 
 function Cancer() {
   const [features, setFeatures] = useState([]);
@@ -44,6 +52,17 @@ function Cancer() {
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertType, setAlertType] = useState(0);
   const [alertString, setAlertString] = useState(0);
+
+  const [openDailog, setOpenDialog] = useState(false);
+  const theme = useTheme();
+
+  const handleClickOpenDailog = () => {
+    setOpenDialog(true);
+  };
+
+  const handleCloseDailog = () => {
+    setOpenDialog(false);
+  };
 
   function handleClick() {
     fetch("/data", {
@@ -110,6 +129,11 @@ function Cancer() {
           setAlertOpen(true);
         }
       });
+
+    // setAlertType("success");
+    setAlertString("There's  % chance that you're healthy!");
+    // setAlertOpen(true);
+    setOpenDialog(true);
   }
 
   function changeRadiusMean(a) {
@@ -369,7 +393,26 @@ function Cancer() {
         </Button>{" "}
       </Form>
 
-      <Snackbar
+      <Dialog
+        open={openDailog}
+        onClose={handleCloseDailog}
+        aria-labelledby="responsive-dialog-title"
+      >
+        <DialogTitle id="responsive-dialog-title">
+          <h4>{"Your Cancer Prediction"}</h4>
+        </DialogTitle>
+        <DialogContent>
+          <ProgressComponent />
+          <DialogContentText>{alertString}</DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button autoFocus onClick={handleCloseDailog}>
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+
+      {/* <Snackbar
         style={{ marginBottom: "10vh", marginRight: "30vw" }}
         open={alertOpen}
         autoHideDuration={5600}
@@ -384,7 +427,7 @@ function Cancer() {
         >
           {alertString}
         </Alert>
-      </Snackbar>
+      </Snackbar> */}
     </div>
   );
 }
