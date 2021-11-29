@@ -87,7 +87,7 @@ function Liver() {
           setIsDaignose(1);
           setProb((json["PROB_POS"] * 100).toFixed(2));
           setAlertString(
-            "There's " + prob + " % chance that you've Heart disease :("
+            "There's " + prob + " % chance that you've liver disease :("
           );
           setColor(colorArray[0]);
         }
@@ -100,7 +100,7 @@ function Liver() {
       setAlertString("There's " + prob + " % chance that you're healthy!");
     } else {
       setAlertString(
-        "There's " + prob + " % chance that you've Heart disease :("
+        "There's " + prob + " % chance that you've liver disease :("
       );
     }
   }, [isDaignose, prob]);

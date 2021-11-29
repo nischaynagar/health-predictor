@@ -13,7 +13,11 @@ import { Switch, Route, Link } from "react-router-dom";
 function navbar() {
   return (
     <>
-      <Navbar bg="light" expand="lg" className="fixed-top">
+      <Navbar
+        style={{ background: "cadetblue" }}
+        expand="lg"
+        className="fixed-top"
+      >
         <Container>
           <Navbar.Brand as={Link} to="/home">
             Health Predictor

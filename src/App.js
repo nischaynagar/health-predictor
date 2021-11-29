@@ -16,10 +16,11 @@ import Heart from "./components/Heart";
 import Home from "./components/Home";
 import Kidney from "./components/Kidney";
 import Liver from "./components/Liver";
+import car from "./img/background.jpg";
 
 function App() {
   return (
-    <>
+    <div className="min-vh-100" style={{ backgroundImage: `url(${car})` }}>
       <div className="container mb-4 pt-5 font-08">
         <Switch>
           <Route exact path="/cancer" component={Cancer} />
@@ -39,7 +40,7 @@ function App() {
       <div className="py-2 bg-black text-white  w-100 position-fixed bottom-0">
         <div className="container text-center font-07">@copyright 2021</div>
       </div>
-    </>
+    </div>
   );
 }
 

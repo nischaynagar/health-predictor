@@ -52,9 +52,7 @@ function Diabetes() {
     if (isDaignose == 0) {
       setAlertString("There's " + prob + " % chance that you're healthy!");
     } else {
-      setAlertString(
-        "There's " + prob + " % chance that you've Heart disease :("
-      );
+      setAlertString("There's " + prob + " % chance that you've daibetes :(");
     }
   }, [isDaignose, prob]);
 
@@ -92,7 +90,7 @@ function Diabetes() {
           setIsDaignose(1);
           setProb((json["PROB_POS"] * 100).toFixed(2));
           setAlertString(
-            "There's " + prob + " % chance that you've Heart disease :("
+            "There's " + prob + " % chance that you've daibetes :("
           );
           setColor(colorArray[0]);
         }
