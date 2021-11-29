@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, FloatingLabel, Form, Row, Button } from "react-bootstrap";
 import FormComponent from "../Form/form";
 import { useState } from "react";
@@ -28,6 +28,10 @@ function Heart() {
   const [ca, setCa] = useState(0);
   const [Thal, setThal] = useState(0);
   const [prob, setProb] = useState(0);
+
+  const colorArray = ["#FF0000", "#63E13D"];
+  const [color, setColor] = useState(colorArray[1]);
+  const [isDaignose, setIsDaignose] = useState(0);
 
   const [openDailog, setOpenDialog] = useState(false);
   const theme = useTheme();
@@ -77,23 +81,32 @@ function Heart() {
       .then((json) => {
         console.log(json["DIAG"], json["PROB_POS"]);
         if (json["DIAG"] === "0") {
-          setAlertType("success");
           console.log(alertType);
+          setIsDaignose(0);
           setProb((json["PROB_NEG"] * 100).toFixed(2));
           setAlertString("There's " + prob + " % chance that you're healthy!");
-          setAlertOpen(true);
+          setColor(colorArray[1]);
         } else if (json["DIAG"] === "1") {
-          setAlertType("error");
+          setIsDaignose(1);
           setProb((json["PROB_POS"] * 100).toFixed(2));
           setAlertString(
             "There's " + prob + " % chance that you've Heart disease :("
           );
-          setAlertOpen(true);
+          setColor(colorArray[0]);
         }
+        setOpenDialog(true);
       });
-
-    setOpenDialog(true);
   }
+
+  useEffect(() => {
+    if (isDaignose == 0) {
+      setAlertString("There's " + prob + " % chance that you're healthy!");
+    } else {
+      setAlertString(
+        "There's " + prob + " % chance that you've Heart disease :("
+      );
+    }
+  }, [isDaignose, prob]);
 
   function changeAge(a) {
     setAge(a);
@@ -224,7 +237,7 @@ function Heart() {
           <h4>{"Your Heart Disease Prediction"}</h4>
         </DialogTitle>
         <DialogContent>
-          <ProgressComponent progressVal={prob} />
+          <ProgressComponent progressVal={prob} colorVal={color} />
           <DialogContentText>{alertString}</DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -233,23 +246,6 @@ function Heart() {
           </Button>
         </DialogActions>
       </Dialog>
-
-      {/* <Snackbar
-        style={{ marginBottom: "10vh", marginRight: "30vw" }}
-        open={alertOpen}
-        autoHideDuration={5600}
-        onClose={() => setAlertOpen(false)}
-        TransitionComponent={TransitionUp}
-        anchorOrigin={{ vertical: "center", horizontal: "right" }}
-      >
-        <Alert
-          variant="outlined"
-          severity={alertType}
-          onClose={() => setAlertOpen(false)}
-        >
-          {alertString}
-        </Alert>
-      </Snackbar> */}
     </div>
   );
 }

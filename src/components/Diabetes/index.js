@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Col, FloatingLabel, Form, Row, Button } from "react-bootstrap";
 import FormComponent from "../Form/form";
 import { useState } from "react";
@@ -23,6 +23,12 @@ function Diabetes() {
   const [DiabetesPedigreeFunction, setDiabetesPedigreeFunction] = useState(0);
   const [Age, setAge] = useState(0);
 
+  const [prob, setProb] = useState(0);
+
+  const colorArray = ["#FF0000", "#63E13D"];
+  const [color, setColor] = useState(colorArray[1]);
+  const [isDaignose, setIsDaignose] = useState(0);
+
   function TransitionUp(props) {
     return <Slide {...props} direction="up" />;
   }
@@ -41,6 +47,16 @@ function Diabetes() {
   const handleCloseDailog = () => {
     setOpenDialog(false);
   };
+
+  useEffect(() => {
+    if (isDaignose == 0) {
+      setAlertString("There's " + prob + " % chance that you're healthy!");
+    } else {
+      setAlertString(
+        "There's " + prob + " % chance that you've Heart disease :("
+      );
+    }
+  }, [isDaignose, prob]);
 
   function handleClick() {
     fetch("/data", {
@@ -67,29 +83,32 @@ function Diabetes() {
       .then((json) => {
         console.log(json["DIAG"], json["PROB_POS"]);
         if (json["DIAG"] === "0") {
-          setAlertType("success");
-          setAlertString(
-            "There's " +
-              (json["PROB_NEG"] * 100).toFixed(2) +
-              " % chance that you're healthy!"
-          );
-          setAlertOpen(true);
+          console.log(alertType);
+          setIsDaignose(0);
+          setProb((json["PROB_NEG"] * 100).toFixed(2));
+          setAlertString("There's " + prob + " % chance that you're healthy!");
+          setColor(colorArray[1]);
         } else if (json["DIAG"] === "1") {
-          setAlertType("error");
+          setIsDaignose(1);
+          setProb((json["PROB_POS"] * 100).toFixed(2));
           setAlertString(
-            "There's " +
-              (json["PROB_POS"] * 100).toFixed(2) +
-              " % chance that you've Diabetes :("
+            "There's " + prob + " % chance that you've Heart disease :("
           );
-          setAlertOpen(true);
+          setColor(colorArray[0]);
         }
+        setOpenDialog(true);
       });
-
-    // setAlertType("success");
-    setAlertString("There's  % chance that you're healthy!");
-    // setAlertOpen(true);
-    setOpenDialog(true);
   }
+
+  useEffect(() => {
+    if (isDaignose == 0) {
+      setAlertString("There's " + prob + " % chance that you're healthy!");
+    } else {
+      setAlertString(
+        "There's " + prob + " % chance that you've Heart disease :("
+      );
+    }
+  }, [isDaignose, prob]);
 
   function changePregnancies(a) {
     setPregnancies(a);
@@ -178,7 +197,7 @@ function Diabetes() {
           <h4>{"Your Diabetes Prediction"}</h4>
         </DialogTitle>
         <DialogContent>
-          <ProgressComponent />
+          <ProgressComponent progressVal={prob} colorVal={color} />
           <DialogContentText>{alertString}</DialogContentText>
         </DialogContent>
         <DialogActions>
@@ -187,23 +206,6 @@ function Diabetes() {
           </Button>
         </DialogActions>
       </Dialog>
-
-      {/* <Snackbar
-        style={{ marginBottom: "10vh", marginRight: "30vw" }}
-        open={alertOpen}
-        autoHideDuration={5600}
-        onClose={() => setAlertOpen(false)}
-        TransitionComponent={TransitionUp}
-        anchorOrigin={{ vertical: "center", horizontal: "right" }}
-      >
-        <Alert
-          variant="outlined"
-          severity={alertType}
-          onClose={() => setAlertOpen(false)}
-        >
-          {alertString}
-        </Alert>
-      </Snackbar> */}
     </div>
   );
 }

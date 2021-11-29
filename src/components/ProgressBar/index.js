@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ProgressBar from "./ProgressBar";
 
-const ProgressComponent = ({ progressVal }) => {
+const ProgressComponent = ({ progressVal, colorVal }) => {
   const [progress, setProgress] = useState(progressVal);
-  const [color, setColor] = useState("");
+  const [color, setColor] = useState(colorVal);
   const colorArray = ["#FF0000", "#63E13D"];
 
   const randomColor = () => {
@@ -13,31 +13,16 @@ const ProgressComponent = ({ progressVal }) => {
   const randomProgressValue = () => {
     const progressValue = Math.floor(Math.random() * 101);
     setProgress(progressValue);
-    // const randomProgressColor = randomColor();
-    // setColor(randomProgressColor);
     setColor(colorArray[1]);
     if (progressValue >= 50) {
       setColor(colorArray[0]);
     }
   };
 
-  const onChange = (e) => {
-    if (e.target.value) {
-      if (e.target.value > 100) {
-        setProgress(100);
-      } else if (e.target.value < 0) {
-        setProgress(0);
-      } else {
-        setProgress(e.target.value);
-      }
-      setColor(colorArray[1]);
-      if (progress >= 50) {
-        setColor(colorArray[0]);
-      }
-    } else {
-      setProgress(0);
-    }
-  };
+  useEffect(() => {
+    setProgress(progressVal);
+    setColor(colorVal);
+  }, [progressVal, colorVal]);
 
   return (
     <div className="app">
@@ -48,7 +33,7 @@ const ProgressComponent = ({ progressVal }) => {
         circleOneStroke="#d9edfe"
         circleTwoStroke={color}
       />
-      <button onClick={randomProgressValue}>Random</button>
+      {/* <button onClick={randomProgressValue}>Random</button> */}
     </div>
   );
 };
