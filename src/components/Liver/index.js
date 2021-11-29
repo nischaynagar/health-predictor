@@ -146,48 +146,57 @@ function Liver() {
               id="fromAge"
               featureName="Age"
               func={changeAge}
+              unit="Years"
             ></FormComponent>
             <FormComponent
               id="fromSex"
               featureName="Sex"
               func={changeSex}
-            ></FormComponent>
+              unit="Female:1 , Male:0"
+              ></FormComponent>
             <FormComponent
               id="fromTotal_Bilirubin"
               featureName="Total Bilirubin"
               func={changeTotal_Bilirubin}
+              unit="mg/dL"
             ></FormComponent>
             <FormComponent
               id="fromDirect_Bilirubin"
               featureName="Direct Bilirubin"
               func={changeDirect_Bilirubin}
+              unit="mg/dL"
             ></FormComponent>
             <FormComponent
               id="fromAlkaline_Phosphotase"
               featureName="Alkaline Phosphotase"
               func={changeAlkaline_Phosphotase}
+              unit="U/L"
             ></FormComponent>
           </Col>
           <Col md={6} className="px-0">
             <FormComponent
               id="fromAlamine_Aminotransferase"
-              featureName="Alamine Aminotransferase"
+              featureName="Alanine Aminotransferase"
               func={changeAlamine_Aminotransferase}
-            ></FormComponent>
+              unit="U/L"
+              ></FormComponent>
             <FormComponent
               id="fromAspartate_Aminotransferase"
               featureName="Aspartate Aminotransferase"
               func={changeAspartate_Aminotransferase}
-            ></FormComponent>
+              unit="U/L"
+              ></FormComponent>
             <FormComponent
               id="fromTotal_Protiens"
               featureName="Total Protiens"
               func={changeTotal_Protiens}
+              unit="g/dL"
             ></FormComponent>
             <FormComponent
               id="fromAlbumin"
               featureName="Albumin"
               func={changeAlbumin}
+              unit="g/dL"
             ></FormComponent>
             <FormComponent
               id="fromAlbumin_and_Globulin_Ratio"

@@ -20,7 +20,7 @@ function FormComponent(props) {
         onChange={handleChange}
         sx={{ m: 1, width: "40ch" }}
         InputProps={{
-          startAdornment: <InputAdornment position="start">kg</InputAdornment>,
+          startAdornment: <InputAdornment position="start">{props.unit}</InputAdornment>,
         }}
       />
     </div>

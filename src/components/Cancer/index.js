@@ -237,162 +237,187 @@ function Cancer() {
   return (
     <div className="py-4">
       <h3 className="mb-4">Please fill the details</h3>
-
+      <h5 className="mb-4">Here, fna : refers to the measurements computed from a digitized image of a fine needle aspirate (FNA) of a breast mass.</h5>
+      <h5 className="mb-4">Here, Largest Measurements : can either be the maximum value or the mean of top 3-10 values.</h5>
       <Form className="mb-5">
         <Row>
-          <Col md={6} className="px-0">
-            <FormComponent
+          <Col md={4} className="px-0">
+          <FormComponent
               id="fromRadiusMean"
-              featureName="Radius Mean"
+              featureName="Mean Radius"
               func={changeRadiusMean}
+              unit={"fna"}
             ></FormComponent>
             <FormComponent
               id="fromTextureMean"
-              featureName="Texture Mean"
+              featureName="Mean Texture"
               func={changeTextureMean}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromPerimeterMean"
-              featureName="Perimeter Mean"
+              featureName="Mean Perimeter"
               func={changePerimeterMean}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromAreaMean"
-              featureName="Area Mean"
+              featureName="Mean Area"
               func={changeAreaMean}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromSmoothnessMean"
-              featureName="Smoothness Mean"
+              featureName="Mean Smoothness"
               func={changeSmoothnessMean}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromCompactnessMean"
-              featureName="Compactness Mean"
+              featureName="Mean Compactness"
               func={changeCompactnessMean}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromConcavityMean"
-              featureName="Concavity Mean"
+              featureName="Mean Concavity"
               func={changeConcavityMean}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromConcanePointsMean"
-              featureName="Concave Points Mean"
+              featureName="Mean Concave Points"
               func={changeConcavePointsMean}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromSymmetryMean"
-              featureName="Symmetry Mean"
+              featureName="Mean Symmetry"
               func={changeSymmetryMean}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromFractalDimensionMean"
-              featureName="Fractal Dimension Mean"
+              featureName="Mean Fractal Dimension"
               func={changeFractalDimensionMean}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
+        </Col>
+          <Col md={4} className="px-0">
+            
             <FormComponent
               id="fromRadiusSE"
-              featureName="Radius SE"
+              featureName="Standard Error in Radius"
               func={changeRadiusSE}
             ></FormComponent>
             <FormComponent
               id="fromTextureSE"
-              featureName="Texture SE"
+              featureName="Standard Error in Texture"
               func={changeTextureSE}
             ></FormComponent>
             <FormComponent
               id="fromPerimeterSE"
-              featureName="Perimeter SE"
+              featureName="Standard Error in Perimeter"
               func={changePerimeterSE}
             ></FormComponent>
             <FormComponent
               id="fromAreaSE"
-              featureName="Area SE"
+              featureName="Standard Error in Area"
               func={changeAreaSE}
             ></FormComponent>
             <FormComponent
               id="fromSmoothnessSE"
-              featureName="Smoothness SE"
+              featureName="Standard Error in Smoothness"
               func={changeSmoothnessSE}
             ></FormComponent>
-          </Col>
-          <Col md={6} className="px-0">
             <FormComponent
               id="fromCompactnessSE"
-              featureName="Compactness SE"
+              featureName="Standard Error in Compactness"
               func={changeCompactnessSE}
             ></FormComponent>
             <FormComponent
               id="fromConcavitySE"
-              featureName="Concavity SE"
+              featureName="Standard Error in Concavity"
               func={changeConcavitySE}
             ></FormComponent>
             <FormComponent
               id="fromConcavePointsSE"
-              featureName="Concave Points SE"
+              featureName="Standard Error in Concave Points"
               func={changeConcavePointsSE}
             ></FormComponent>
             <FormComponent
               id="fromSymmetrySE"
-              featureName="Symmetry SE"
+              featureName="Standard Error in Symmetry"
               func={changeSymmetrySE}
             ></FormComponent>
             <FormComponent
               id="fromFractalDimesionSE"
-              featureName="Fractal Dimension SE"
+              featureName="Standard Error in Fractal Dimension"
               func={changeFractalDimensionSE}
             ></FormComponent>
+          </Col>
+          <Col md={4} className="px-0">
+            
             <FormComponent
               id="fromRadiusWorst"
-              featureName="Radius Worst"
+              featureName="Largest Radius"
               func={changeRadiusWorst}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromTextureWorst"
-              featureName="Texture Worst"
+              featureName="Largest Texture"
               func={changeTextureWorst}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromPerimeterWorst"
-              featureName="Perimeter Worst"
+              featureName="Largest Perimeter"
               func={changePerimeterWorst}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromAreaWorst"
-              featureName="Area Worst"
+              featureName="Largest Area"
               func={changeAreaWorst}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromSmoothnessWorst"
-              featureName="Smoothness Worst"
+              featureName="Largest Smoothness"
               func={changeSmoothnessWorst}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromCompactnessWorst"
-              featureName="Compactness Worst"
+              featureName="Largest Compactness"
               func={changeCompactnessWorst}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromConcavityWorst"
-              featureName="Concavity Worst"
+              featureName="Largest Concavity"
               func={changeConcavityWorst}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromConcanePointsWorst"
-              featureName="Concave Points Worst"
+              featureName="Largest Concave Points"
               func={changeConcavePointsWorst}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromSymmetryWorst"
-              featureName="Symmetry Worst"
+              featureName="Largest Symmetry"
               func={changeSymmetryWorst}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
             <FormComponent
               id="fromFractalDimensionWorst"
-              featureName="Fractal Dimension Worst"
+              featureName="Largest Fractal Dimension"
               func={changeFractalDimensionWorst}
-            ></FormComponent>
+              unit={"fna"}
+              ></FormComponent>
           </Col>
         </Row>
         <Button variant="primary" onClick={handleClick}>

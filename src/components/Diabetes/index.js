@@ -141,23 +141,25 @@ function Diabetes() {
           <Col md={6} className="px-0">
             <FormComponent
               id="fromPregnancies"
-              featureName="Pregnancies"
+              featureName="Number of pregnancies"
               func={changePregnancies}
             ></FormComponent>
             <FormComponent
               id="fromGlucose"
-              featureName="Glucose"
+              featureName="Plasma Glucose Concentration"
               func={changeGlucose}
             ></FormComponent>
             <FormComponent
               id="fromBloodPressure"
               featureName="Blood Pressure"
               func={changeBloodPressure}
+              unit="mmHg"
             ></FormComponent>
             <FormComponent
               id="fromSkinThickness"
               featureName="Skin Thickness:"
               func={changeSkinThickness}
+              unit="mm"
             ></FormComponent>
           </Col>
           <Col md={6} className="px-0">
@@ -165,10 +167,11 @@ function Diabetes() {
               id="fromInsulin"
               featureName="Insulin"
               func={changeInsulin}
+              unit="mIU/L"
             ></FormComponent>
             <FormComponent
               id="fromBMI"
-              featureName="BMI"
+              featureName="Body Mass Index : BMI"
               func={changeBMI}
             ></FormComponent>
             <FormComponent
@@ -180,6 +183,7 @@ function Diabetes() {
               id="fromAge"
               featureName="Age"
               func={changeAge}
+              unit="Years"
             ></FormComponent>
           </Col>
         </Row>

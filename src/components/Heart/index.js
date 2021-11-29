@@ -150,6 +150,7 @@ function Heart() {
   return (
     <div className="py-4">
       <h3 className="mb-4">Please fill the details</h3>
+      <h5 className="mb-4">New users should refer to the information given at the bottom of the page before submitting data.</h5>
       {/* // age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal */}
       <Form className="mb-5">
         <Row>
@@ -158,68 +159,79 @@ function Heart() {
               id="fromAge"
               featureName="Age"
               func={changeAge}
+              unit="Years"
             ></FormComponent>
             <FormComponent
               id="fromSex"
               featureName="Sex"
               func={changeSex}
+              unit="Female:0 , Male:1"
             ></FormComponent>
             <FormComponent
               id="fromChestpaintype"
               featureName="Chest pain type"
               func={changeChestpaintype}
+              unit="1#"
             ></FormComponent>
             <FormComponent
               id="fromTrestbps"
-              featureName="Trest BPS"
+              featureName="Resting Blood Pressure"
               func={changeTrestbps}
+              unit="mmHg"
             ></FormComponent>
             <FormComponent
               id="fromSerumCholestoral"
-              featureName="Serum Cholestrol (in mg/dl) "
+              featureName="Serum Cholestrol"
               func={changeSerumCholestoral}
+              unit="mg/dl"
             ></FormComponent>
             <FormComponent
               id="fromFbs"
-              featureName="FBS (fasting blood sugar) "
+              featureName="Fasting blood sugar"
               func={changefbs}
-            ></FormComponent>
+              unit="2#"
+              ></FormComponent>
             <FormComponent
               id="fromRestECG"
               featureName="RestECG"
               func={changeRestECG}
-            ></FormComponent>
+              unit="3#"
+              ></FormComponent>
           </Col>
           <Col md={6} className="px-0">
             <FormComponent
               id="fromThalach"
-              featureName="Thalach"
+              featureName="Maximum heart rate when exercising"
               func={changeThalach}
             ></FormComponent>
             <FormComponent
               id="fromExang"
-              featureName="Exang (exercise induced angina)"
+              featureName="Exercise induced angina"
               func={changeExang}
-            ></FormComponent>
+              unit="Yes:1 , No:0"
+              ></FormComponent>
             <FormComponent
               id="fromOldPeak"
-              featureName="oldpeak (ST depression induced by exercise relative to rest)"
+              featureName="ST depression induced by exercise relative to rest"
               func={changeOldpeak}
             ></FormComponent>
             <FormComponent
               id="fromSlope"
-              featureName="Slope"
+              featureName="Slope of the peak exercise ST segment"
               func={changeSlope}
-            ></FormComponent>
+              unit="4#"
+              ></FormComponent>
             <FormComponent
               id="fromCa"
-              featureName="ca (number of major vessels (0-3) colored by flourosopy)"
+              featureName="Number of major vessels colored by flourosopy"
               func={changeCa}
+              unit="Between 0-3"
             ></FormComponent>
             <FormComponent
               id="fromTHal"
-              featureName="Thal"
+              featureName="Thalassemia"
               func={changeThal}
+              unit="5#"
             ></FormComponent>
           </Col>
         </Row>
@@ -228,6 +240,29 @@ function Heart() {
         </Button>{" "}
       </Form>
 
+      <h5 className="mb-4">1#</h5>
+          <h6 className="mb-4">1: Typical angina</h6>
+          <h6 className="mb-4">2: Atypical angina</h6>
+          <h6 className="mb-4">3: Non-anginal pain</h6>
+          <h6 className="mb-4">4: Asymptomatic</h6>
+      <br/>
+          <h5 className="mb-4">2#  (Fasting blood sugar {">"} 120 mg/dl)</h5>
+          <h6 className="mb-4">(0: False, 1: True)</h6>
+      <br/>
+          <h5 className="mb-4">3#</h5>
+          <h6 className="mb-4">0: Normal</h6>
+          <h6 className="mb-4">1: Having ST-T wave abnormality (T wave inversions and/or ST elevation or depression of {">"} 0.05 mV)</h6>
+          <h6 className="mb-4">2: Showing probable or definite left ventricular hypertrophy by Estes' criteria</h6>
+      <br/>
+      <h5 className="mb-4">4#</h5>
+          <h6 className="mb-4">1: Upsloping</h6>
+          <h6 className="mb-4">2: Flat</h6>
+      <h6 className="mb-4">3: Downsloping</h6>
+      <br/>
+      <h5 className="mb-4">5#</h5>
+          <h6 className="mb-4">3: Normal</h6>
+          <h6 className="mb-4">6: Fixed defect</h6>
+          <h6 className="mb-4">7: Reversable defect</h6>
       <Dialog
         open={openDailog}
         onClose={handleCloseDailog}
