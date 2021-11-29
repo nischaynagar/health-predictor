@@ -161,6 +161,8 @@ function Diabetes() {
               featureName="Skin Thickness:"
               func={changeSkinThickness}
             ></FormComponent>
+          </Col>
+          <Col md={6} className="px-0">
             <FormComponent
               id="fromInsulin"
               featureName="Insulin"

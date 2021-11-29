@@ -1,6 +1,9 @@
 import React from "react";
 import { Col, FloatingLabel, Form, Row } from "react-bootstrap";
 import { useState } from "react";
+import OutlinedInput from "@mui/material/OutlinedInput";
+import InputAdornment from "@mui/material/InputAdornment";
+import { TextField } from "@mui/material";
 
 function FormComponent(props) {
   function handleChange(e) {
@@ -10,14 +13,16 @@ function FormComponent(props) {
 
   return (
     <div>
-      <Form.Group as={Row} sm="6" className="mb-3" controlId={props.id}>
-        <Col sm="6">
-          <Form.Label column sm="12">
-            {props.featureName}
-          </Form.Label>
-        </Col>
-        <Form.Control onChange={handleChange} sm="4" className="mx-sm-0 mx-4" />
-      </Form.Group>
+      <TextField
+        required
+        label={props.featureName}
+        id="outlined-start-adornment"
+        onChange={handleChange}
+        sx={{ m: 1, width: "40ch" }}
+        InputProps={{
+          startAdornment: <InputAdornment position="start">kg</InputAdornment>,
+        }}
+      />
     </div>
   );
 }
