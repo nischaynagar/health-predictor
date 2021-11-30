@@ -11,6 +11,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import ProgressComponent from "../ProgressBar";
+import UploadIcon from '@mui/icons-material/Upload';
 
 function Cancer() {
   const [features, setFeatures] = useState([]);
@@ -297,7 +298,7 @@ function Cancer() {
     type="file"
   />
 
-<Button variant="outlined"  color="secondary"
+<Button variant="contained" color="primary" startIcon={<UploadIcon />}
     component="span"
     aria-label="add">Upload
             </Button>
@@ -484,7 +485,7 @@ function Cancer() {
               ></FormComponent>
           </Col>
         </Row>
-        <Button  variant="outlined"  color="secondary" onClick={handleClick}>
+        <Button  variant="contained" color="primary" onClick={handleClick}>
           SUBMIT
         </Button>{" "}
       </Form>

@@ -11,6 +11,7 @@ import {
 import { Switch, Route, Link } from "react-router-dom";
 import About from "./components/About";
 import Cancer from "./components/Cancer";
+import Details from "./components/Datasets";
 import Diabetes from "./components/Diabetes";
 import Heart from "./components/Heart";
 import Home from "./components/Home";
@@ -27,7 +28,8 @@ function App() {
           <Route exact path="/diabetes" component={Diabetes} />
           <Route exact path="/liver" component={Liver} />
           <Route exact path="/heart" component={Heart} />
-          <Route exact path="/kidney" component={Kidney} />
+          {/* <Route exact path="/kidney" component={Kidney} /> */}
+          <Route exact path="/details" component={Details} />
           <Route exact path="/about" component={About} />
           <Route path="/" component={Home} />
           <Route

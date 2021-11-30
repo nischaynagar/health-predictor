@@ -41,13 +41,12 @@ function navbar() {
               <Nav.Link as={Link} to="/liver">
                 Liver
               </Nav.Link>
-            
-         
-           
               {/* <Nav.Link as={Link} to="/kidney">
                 Kidney
               </Nav.Link> */}
-
+              {/* <Nav.Link as={Link} to="/details">
+                Technical Details
+              </Nav.Link> */}
               <Nav.Link as={Link} to="/about">
                 About
               </Nav.Link>
