@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { Col, FloatingLabel, Form, Row, Button } from "react-bootstrap";
+import { Col, FloatingLabel, Form, Row} from "react-bootstrap";
 import FormComponent from "../Form/form";
 import { useState } from "react";
-import { Alert, Slide, Snackbar } from "@mui/material";
+import { Alert, Button, Slide, Snackbar } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -87,7 +87,7 @@ function Liver() {
           setIsDaignose(1);
           setProb((json["PROB_POS"] * 100).toFixed(2));
           setAlertString(
-            "There's " + prob + " % chance that you've liver disease :("
+            "There's " + prob + " % chance that you've Liver disease :("
           );
           setColor(colorArray[0]);
         }
@@ -100,7 +100,7 @@ function Liver() {
       setAlertString("There's " + prob + " % chance that you're healthy!");
     } else {
       setAlertString(
-        "There's " + prob + " % chance that you've liver disease :("
+        "There's " + prob + " % chance that you've Liver disease :("
       );
     }
   }, [isDaignose, prob]);
@@ -135,10 +135,74 @@ function Liver() {
   function changeAlbumin_and_Globulin_Ratio(a) {
     setAlbumin_and_Globulin_Ratio(a);
   }
+
+  function uphand(feas) {
+    console.log(feas.length)
+    if (feas.length != 10) {
+      alert("Report not recognized!")
+      return
+    }
+    fetch("/data", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: 4,
+        features: feas,
+      }),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json["DIAG"], json["PROB_POS"]);
+        if (json["DIAG"] === "1") {
+          console.log(alertType);
+          setIsDaignose(0);
+          setProb((json["PROB_NEG"] * 100).toFixed(2));
+          setAlertString("There's " + prob + " % chance that you're healthy!");
+          setColor(colorArray[1]);
+        } else if (json["DIAG"] === "2") {
+          setIsDaignose(1);
+          setProb((json["PROB_POS"] * 100).toFixed(2));
+          setAlertString(
+            "There's " + prob + " % chance that you've Liver disease :("
+          );
+          setColor(colorArray[0]);
+        }
+        setOpenDialog(true);
+      });
+  }
+
+  async function showFile(e){
+    e.preventDefault()
+    const reader = new FileReader()
+    reader.onload = async (e) => { 
+      const text = (e.target.result)
+      var feas = text.split(",")
+      uphand(feas)
+    };
+    reader.readAsText(e.target.files[0])
+  }
+
+
   return (
     <div className="py-4">
       <h3 className="mb-4">Please fill the details</h3>
+      <label htmlFor="upload-photo">
+        <input
+          onChange={showFile}
+    style={{ display: 'none' }}
+    id="upload-photo"
+    name="upload-photo"
+    type="file"
+  />
 
+<Button variant="outlined"  color="secondary"
+    component="span"
+    aria-label="add">Upload
+            </Button>
+</label>
       <Form className="mb-5">
         <Row>
           <Col md={6} className="px-0">
@@ -205,7 +269,7 @@ function Liver() {
             ></FormComponent>
           </Col>
         </Row>
-        <Button variant="primary" onClick={handleClick}>
+        <Button variant="outlined"  color="secondary" onClick={handleClick}>
           SUBMIT
         </Button>{" "}
       </Form>

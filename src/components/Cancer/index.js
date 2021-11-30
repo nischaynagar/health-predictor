@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { Col, FloatingLabel, Form, Row, Button } from "react-bootstrap";
+import { Col, FloatingLabel, Form, Row } from "react-bootstrap";
 import FormComponent from "../Form/form";
 import { useState } from "react";
-import { Alert, Slide, Snackbar } from "@mui/material";
+import { Alert, Slide, Snackbar, Button } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -125,7 +125,7 @@ function Cancer() {
           setIsDaignose(1);
           setProb((json["PROB_POS"] * 100).toFixed(2));
           setAlertString(
-            "There's " + prob + " % chance that you've Heart disease :("
+            "There's " + prob + " % chance that you've breast cancer :("
           );
           setColor(colorArray[0]);
         }
@@ -138,7 +138,7 @@ function Cancer() {
       setAlertString("There's " + prob + " % chance that you're healthy!");
     } else {
       setAlertString(
-        "There's " + prob + " % chance that you've Heart disease :("
+        "There's " + prob + " % chance that you've breast cancer :("
       );
     }
   }, [isDaignose, prob]);
@@ -234,11 +234,75 @@ function Cancer() {
     setFractalDimensionWorst(a);
   }
 
+  function uphand(feas) {
+    console.log(feas.length)
+    if (feas.length != 30) {
+      alert("Report not recognized!")
+      return
+    }
+    fetch("/data", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: 1,
+        features: feas,
+      }),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json["DIAG"], json["PROB_POS"]);
+        if (json["DIAG"] === "B") {
+          console.log(alertType);
+          setIsDaignose(0);
+          setProb((json["PROB_NEG"] * 100).toFixed(2));
+          setAlertString("There's " + prob + " % chance that you're healthy!");
+          setColor(colorArray[1]);
+        } else if (json["DIAG"] === "M") {
+          setIsDaignose(1);
+          setProb((json["PROB_POS"] * 100).toFixed(2));
+          setAlertString(
+            "There's " + prob + " % chance that you've breast cancer :("
+          );
+          setColor(colorArray[0]);
+        }
+        setOpenDialog(true);
+      });
+  }
+
+  async function showFile(e){
+    e.preventDefault()
+    const reader = new FileReader()
+    reader.onload = async (e) => { 
+      const text = (e.target.result)
+      var feas = text.split(",")
+      uphand(feas)
+    };
+    reader.readAsText(e.target.files[0])
+  }
+
   return (
     <div className="py-4">
       <h3 className="mb-4">Please fill the details</h3>
       <h5 className="mb-4">Here, fna : refers to the measurements computed from a digitized image of a fine needle aspirate (FNA) of a breast mass.</h5>
       <h5 className="mb-4">Here, Largest Measurements : can either be the maximum value or the mean of top 3-10 values.</h5>
+      <label htmlFor="upload-photo">
+        <input
+          onChange={showFile}
+    style={{ display: 'none' }}
+    id="upload-photo"
+    name="upload-photo"
+    type="file"
+  />
+
+<Button variant="outlined"  color="secondary"
+    component="span"
+    aria-label="add">Upload
+            </Button>
+      </label>
+      
       <Form className="mb-5">
         <Row>
           <Col md={4} className="px-0">
@@ -420,7 +484,7 @@ function Cancer() {
               ></FormComponent>
           </Col>
         </Row>
-        <Button variant="primary" onClick={handleClick}>
+        <Button  variant="outlined"  color="secondary" onClick={handleClick}>
           SUBMIT
         </Button>{" "}
       </Form>

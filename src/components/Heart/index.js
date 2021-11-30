@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import { Col, FloatingLabel, Form, Row, Button } from "react-bootstrap";
+import { Col, FloatingLabel, Form, Row } from "react-bootstrap";
 import FormComponent from "../Form/form";
 import { useState } from "react";
-import { Alert, Slide, Snackbar } from "@mui/material";
+import { Alert, Slide, Snackbar, Button, Fab } from "@mui/material";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -12,8 +12,9 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
 import ProgressComponent from "../ProgressBar";
 
+
 function Heart() {
-  const [features, setFeatures] = useState([]);
+  const [features1, setFeatures] = useState([]);
   const [Age, setAge] = useState(0);
   const [Sex, setSex] = useState(0);
   const [Chestpaintype, setChestpaintype] = useState(0);
@@ -52,6 +53,7 @@ function Heart() {
   const [alertString, setAlertString] = useState(0);
 
   function handleClick() {
+
     fetch("/data", {
       method: "POST",
       mode: "no-cors",
@@ -75,6 +77,45 @@ function Heart() {
           ca,
           Thal,
         ],
+      }),
+    })
+      .then((response) => response.json())
+      .then((json) => {
+        console.log(json["DIAG"], json["PROB_POS"]);
+        if (json["DIAG"] === "0") {
+          console.log(alertType);
+          setIsDaignose(0);
+          setProb((json["PROB_NEG"] * 100).toFixed(2));
+          setAlertString("There's " + prob + " % chance that you're healthy!");
+          setColor(colorArray[1]);
+        } else if (json["DIAG"] === "1") {
+          setIsDaignose(1);
+          setProb((json["PROB_POS"] * 100).toFixed(2));
+          setAlertString(
+            "There's " + prob + " % chance that you've Heart disease :("
+          );
+          setColor(colorArray[0]);
+        }
+        setOpenDialog(true);
+      });
+  }
+
+  function handleUp(feas) {
+    console.log(feas.length)
+    if (feas.length != 13) {
+      alert("Report not recognized!")
+      return
+    }
+    console.log(feas)
+    fetch("/data", {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: 2,
+        features: feas,
       }),
     })
       .then((response) => response.json())
@@ -147,11 +188,47 @@ function Heart() {
   function changeThal(a) {
     setThal(a);
   }
+
+  function uphand(feas) {
+    handleUp(feas)
+  }
+
+  async function showFile(e){
+    e.preventDefault()
+    const reader = new FileReader()
+    reader.onload = async (e) => { 
+      const text = (e.target.result)
+      var feas = text.split(",")
+      uphand(feas)
+    };
+    reader.readAsText(e.target.files[0])
+  }
+  
   return (
     <div className="py-4">
       <h3 className="mb-4">Please fill the details</h3>
       <h5 className="mb-4">New users should refer to the information given at the bottom of the page before submitting data.</h5>
       {/* // age,sex,cp,trestbps,chol,fbs,restecg,thalach,exang,oldpeak,slope,ca,thal */}
+      
+      
+
+      
+      <label htmlFor="upload-photo">
+        <input
+          onChange={showFile}
+    style={{ display: 'none' }}
+    id="upload-photo"
+    name="upload-photo"
+    type="file"
+  />
+
+<Button variant="outlined"  color="secondary"
+    component="span"
+    aria-label="add">Upload
+            </Button>
+</label>
+      
+
       <Form className="mb-5">
         <Row>
           <Col md={6} className="px-0">
@@ -235,7 +312,7 @@ function Heart() {
             ></FormComponent>
           </Col>
         </Row>
-        <Button variant="primary" onClick={handleClick}>
+        <Button variant="outlined" color="secondary" onClick={handleClick}>
           SUBMIT
         </Button>{" "}
       </Form>
